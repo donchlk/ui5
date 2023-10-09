@@ -24,13 +24,11 @@ displayBlock="true">
 	</ComboBox>
 
 		<Label id="_IDGenLabel2" text="Filter: Lieferant" width="250px"/>
-			<ComboBox id="_IDGenComboBox2"
-				items="{
-					path: '/Suppliers',
-					sorter: { path: 'Name' }
-				}">
-				<c:Item id="_IDGenItem2" key="{Suppliers}" text="{Name}" />
-			</ComboBox>
+	<ComboBox id="_IDGenComboBox4"
+		selectionChange="onSupplierSelectionChange"
+		items="{ path: '/Suppliers', sorter: { path: 'Name' } }">
+		<c:Item id="_IDGenItem4" key="{Suppliers}" text="{Name}" />
+	</ComboBox>
 
 
 <Button id="_IDGenButton1"		width="170px"

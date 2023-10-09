@@ -92,6 +92,18 @@ sap.ui.define([
                 var binding = list.getBinding("items");
                 binding.filter(filter, "Application");
                 binding.refresh(true);
+            },
+
+            onSupplierSelectionChange: function(oEvent) {
+                var list = this.getView().byId("idList");
+                var sSupplierName = oEvent.getParameter("selectedItem").getText();
+            
+                // Filter definition
+                var filter = new sap.ui.model.Filter("Supplier/Name", FilterOperator.Contains, sSupplierName);
+            
+                var binding = list.getBinding("items");
+                binding.filter(filter, "Application");
+                binding.refresh(true);
             }
             
             
