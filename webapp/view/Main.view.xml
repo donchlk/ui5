@@ -16,6 +16,7 @@ displayBlock="true">
 
 
 <HBox id="_IDGenHBox1" width="100%">
+<Button id="_IDGenButton4" text="Sort" press="openSortDialog" />
 <Label id="_IDGenLabel1" text="Filter: Kategorie" width="250px"/>
 	<ComboBox id="_IDGenComboBox3"
 		selectionChange="onCategorySelectionChange"

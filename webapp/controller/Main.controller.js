@@ -104,7 +104,43 @@ sap.ui.define([
                 var binding = list.getBinding("items");
                 binding.filter(filter, "Application");
                 binding.refresh(true);
+            },
+
+            openSortDialog: function() {
+                if (!this._oSortDialog) {
+                    this._oSortDialog = sap.ui.xmlfragment("gruppe3.view.SortDialog", this);
+                    this.getView().addDependent(this._oSortDialog);
+                }
+                this._oSortDialog.open();
+            },
+            
+            onSortSelect: function(oEvent) {
+                var sSelectedItem = oEvent.getParameter("listItem").getTitle();
+            
+                this._sSortKey = {
+                    "Name": "Name",
+                    "Price": "Price",
+                    // "Id": "ProductId" // 
+                }[sSelectedItem];
+            
+                this._bDescendingSort = !this._bDescendingSort; 
+            },
+            
+            onSortDialogConfirm: function() {
+                var oList = this.getView().byId("idList");
+                var oBinding = oList.getBinding("items");
+            
+                var oSorter = new sap.ui.model.Sorter(this._sSortKey, this._bDescendingSort);
+            
+                oBinding.sort(oSorter);
+            
+                this._oSortDialog.close();
+            },
+            
+            onSortDialogClose: function() {
+                this._oSortDialog.close();
             }
+            
             
             
             

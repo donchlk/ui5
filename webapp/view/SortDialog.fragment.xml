@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog id="_IDGenDialog1" title="Sort by">
+        <List
+            id="sortList"
+            mode="SingleSelectMaster"
+            select="onSortSelect">
+            <StandardListItem id="_IDGenStandardListItem1" title="Name" />
+            <StandardListItem id="_IDGenStandardListItem2" title="Price" />
+            <!-- <StandardListItem id="_IDGenStandardListItem3" title="Id" /> -->
+        </List>
+        <beginButton>
+            <Button id="_IDGenButton1" text="Sort" press="onSortDialogConfirm" />
+        </beginButton>
+        <endButton>
+            <Button id="_IDGenButton2" text="Cancel" press="onSortDialogClose" />
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>
