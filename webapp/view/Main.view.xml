@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+xmlns="sap.m" 
+controllerName="gruppe3.controller.Main" 
+xmlns:c="sap.ui.core"
+displayBlock="true">
+    <Page id="page" title="{i18n>Produkte}">
+    <c:Fragment fragmentName="gruppe3.view.tree" type="XML" id="frag1"/>
+        <content>
+    <List id="list01" items="{/Products}"
+
+		headerText="Products">
+		<ObjectListItem
+			title="{Name}"
+			type="Active"
+			press="onListItemPress"
+			number="{
+				parts:[{path:'Price'}],
+				type: 'sap.ui.model.type.Currency'
+				
+			}"
+			numberUnit="EUR">
+			<firstStatus>
+				<ObjectStatus
+					text="Rating:{Rating}/5"
+					state="{
+						'Verfügbar'
+					}" />
+			</firstStatus>
+			<ObjectAttribute text="{Description}" />
+			<ObjectAttribute text="{ReleaseDate}" />
+		</ObjectListItem>
+    
+              
+
+      
+        
+    </List>
+        </content>
+    </Page>
+</mvc:View>

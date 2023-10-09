@@ -1,0 +1,35 @@
+<c:FragmentDefinition id="fragdef2"
+              controllerName="sap.ui.table.sample.TreeTable.JSONTreeBinding.Controller"
+            xmlns="sap.ui.table"
+            xmlns:mvc="sap.ui.core.mvc"
+            xmlns:m="sap.m"
+            xmlns:u="sap.ui.unified"
+            xmlns:c="sap.ui.core"
+            height="100%"
+            >
+            <TreeTable
+                    id="TreeTableBasic"
+                    rows="{path:'/Categories', parameters: {arrayNames:['categories']}}"
+                    selectionMode="MultiToggle"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title">
+                <extension>
+                    <m:OverflowToolbar id="toolbar1" style="Clear">
+                        <m:Title id="title" text="Clothing"/>
+                        <m:ToolbarSpacer id="spacer1"/>
+                        <m:Button id="brn1" text="Collapse all" press="onCollapseAll"/>
+                        <m:Button id="brn2" text="Collapse selection" press="onCollapseSelection"/>
+                        <m:Button id="brn3" text="Expand first level" press="onExpandFirstLevel"/>
+                        <m:Button id="brn4" text="Expand selection" press="onExpandSelection"/>
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column id="clm1" width="13rem">
+                        <m:Label id="lbl1" text="Categories"/>
+                        <template>
+                            <m:Text id="txt1" text="{Name}" wrapping="false" />
+                        </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+            </c:FragmentDefinition>
