@@ -135,10 +135,14 @@ sap.ui.define([
                 oBinding.sort(oSorter);
             
                 this._oSortDialog.close();
+                this._oSortDialog.destroy();
+                this._oSortDialog = null;
             },
             
             onSortDialogClose: function() {
                 this._oSortDialog.close();
+                this._oSortDialog.destroy();
+                this._oSortDialog = null;
             },
 
             openDetailDialog: function(oEvent) {
@@ -156,6 +160,8 @@ sap.ui.define([
             
             closeDetailDialog: function() {
                 this._oDetailDialog.close();
+                this._oDetailDialog.destroy();
+                this._oDetailDialog = null;
             }
             
             
