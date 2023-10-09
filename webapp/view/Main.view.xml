@@ -65,7 +65,7 @@ displayBlock="true">
 					<Label id="idFilterLabel" />
 				</OverflowToolbar>
 			</infoToolbar>
-	 <CustomListItem id="_IDGenCustomListItem1">	
+	 <CustomListItem id="_IDGenCustomListItem1" press="openDetailDialog">	
 	 <HBox id="_IDGenHBox2" >
 	 
 	 <VBox id="_IDGenVBox1" width="50%">
@@ -84,6 +84,7 @@ displayBlock="true">
 				width="50px"
 				change ="calcPrice" />
 			 <Button id="_IDGenButton2" text="Direktbestellung" press="onPressOrder" />
+			 <Button id="_IDGenButton5" text="Details" press="openDetailDialog" />
 		</InputListItem>
 		</HBox>
 		<HBox id="_IDGenHBox4" >

@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog id="_IDGenDialog1" title="Detail Information">
+        <VBox id="_IDGenVBox1">
+            <!-- ここに詳細情報を表示するためのコントロールを配置する -->
+            <Label id="_IDGenLabel1" text="Name: {Name}" />
+            <Label id="_IDGenLabel2" text=" Description: {Description}" />
+            <Label id="_IDGenLabel3" text="Price: {Price} EUR" />
+									       <RatingIndicator 
+                                                            id="_IDGenRatingIndicator" 
+                                                            value="{Rating}" 
+                                                            maxValue="5" 
+                                                            visualMode="Full"
+       />         
+            <Label id="_IDGenLabel6" text="ReleaseDate: {
+                                                            path: 'ReleaseDate',
+                                                            type: 'sap.ui.model.type.Date'
+                                                        }" />            
+            <!-- CategoryとSupplierの情報を追加 -->
+            <Label id="_IDGenLabel4" text="Category:  {Category/Name}" />
+            <Label id="_IDGenLabel5" text="Supplier:  {Supplier/Name}" />
+            <!-- その他の情報 -->
+        </VBox>
+        
+        <buttons>
+            <Button id="_IDGenButton1" text="Close" press="closeDetailDialog" />
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>

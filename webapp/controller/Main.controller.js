@@ -139,6 +139,23 @@ sap.ui.define([
             
             onSortDialogClose: function() {
                 this._oSortDialog.close();
+            },
+
+            openDetailDialog: function(oEvent) {
+                if (!this._oDetailDialog) {
+                    this._oDetailDialog = sap.ui.xmlfragment("gruppe3.view.DetailDialog", this);
+                    this.getView().addDependent(this._oDetailDialog);
+                }
+                
+                var oListItem = oEvent.getSource();
+                var oBindingContext = oListItem.getBindingContext();
+            
+                this._oDetailDialog.setBindingContext(oBindingContext);
+                this._oDetailDialog.open();
+            },
+            
+            closeDetailDialog: function() {
+                this._oDetailDialog.close();
             }
             
             
