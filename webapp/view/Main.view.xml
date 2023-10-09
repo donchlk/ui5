@@ -1,40 +1,105 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" 
 xmlns="sap.m" 
+
 controllerName="gruppe3.controller.Main" 
+xmlns:l="sap.ui.layout"
 xmlns:c="sap.ui.core"
 displayBlock="true">
     <Page id="page" title="{i18n>Produkte}">
-    <c:Fragment fragmentName="gruppe3.view.tree" type="XML" id="frag1"/>
-        <content>
-    <List id="list01" items="{/Products}"
+	
+    		<subHeader width="50%">
+			<OverflowToolbar>
+				<SearchField liveChange=".onSearch" width="50%" />
+			</OverflowToolbar>
+			
+			</subHeader>
 
-		headerText="Products">
-		<ObjectListItem
-			title="{Name}"
-			type="Active"
-			press="onListItemPress"
-			number="{
-				parts:[{path:'Price'}],
-				type: 'sap.ui.model.type.Currency'
-				
-			}"
-			numberUnit="EUR">
-			<firstStatus>
-				<ObjectStatus
-					text="Rating:{Rating}/5"
-					state="{
-						'Verfügbar'
-					}" />
-			</firstStatus>
-			<ObjectAttribute text="{Description}" />
-			<ObjectAttribute text="{ReleaseDate}" />
-		</ObjectListItem>
-    
-              
 
-      
+<HBox width="100%">
+<Label text="Filter: Kategorie" width="250px"/>
+			<ComboBox
+				selectionChange ="onSelectionChange"
+				items="{
+					path: '/Categories',
+					sorter: { path: 'Name' }
+					
+				}">
+				<c:Item key="{Suppliers}" text="{Name}"  />
+			</ComboBox>
+
+		<Label text="Filter: Lieferant" width="250px"/>
+			<ComboBox
+				items="{
+					path: '/Suppliers',
+					sorter: { path: 'Name' }
+				}">
+				<c:Item key="{Suppliers}" text="{Name}" />
+			</ComboBox>
+
+
+<Button		width="170px"
+            icon="sap-icon://cart"
+             text="Warenkorb"
+            press="onOpenDialog"
+            class="sapUiSmallMarginEnd"/>
+
+</HBox>
+			
+
+
+		<List
+			id="idList"
+			items="{/Products}"
+			selectionChange=".onSelectionChange"
+			mode="MultiSelect"
+			growing="true"
+			growingThreshold="50"
+			includeItemInSelection="true">
+			<infoToolbar>
+				<OverflowToolbar visible="false" id="idInfoToolbar">
+					<Label id="idFilterLabel" />
+				</OverflowToolbar>
+			</infoToolbar>
+	 <CustomListItem>	
+	 <HBox >
+	 
+	 <VBox width="50%">
+	 <Image src="Produkt.PNG" width="{/imageWidth}" />
+            <Label text="{Name}"/>
+			<Label text="{Description}"/>
+
+        </VBox>
+
+		<HBox width="50%">
+			<InputListItem label="Menge" width="50%">
+			<Input
+				placeholder="1"
+				value="1"
+				type="Number"
+				width="50px" />
+			 <Button text="Bestellen" click="onPressOrder" />
+		</InputListItem>
+		</HBox>
+		<HBox >
+		<Label text="{Rating}"/>
+		</HBox>
+
+		<VBox >
+		<Label text="{Price} EUR"/>
+		<Button text="In Den Warenkorb" click="onPressInCart" />
+		</VBox>
+		
+		
+
+
+	 </HBox>
         
-    </List>
-        </content>
+    </CustomListItem>
+			
+				
+		</List>
+
+	
+
     </Page>
 </mvc:View>
