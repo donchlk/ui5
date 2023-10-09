@@ -55,22 +55,22 @@ sap.ui.define([
                 oBinding.filter(aFilters, "Application");
             },
     
-            onSelectionChange: function (oEvent) {
-                var oList = oEvent.getSource();
-                var oLabel = this.byId("idFilterLabel");
-                var oInfoToolbar = this.byId("idInfoToolbar");
+            // onSelectionChange: function (oEvent) {
+            //     var oList = oEvent.getSource();
+            //     var oLabel = this.byId("idFilterLabel");
+            //     var oInfoToolbar = this.byId("idInfoToolbar");
     
-                // With the 'getSelectedContexts' function you can access the context paths
-                // of all list items that have been selected, regardless of any current
-                // filter on the aggregation binding.
-                var aContexts = oList.getSelectedContexts(true);
+            //     // With the 'getSelectedContexts' function you can access the context paths
+            //     // of all list items that have been selected, regardless of any current
+            //     // filter on the aggregation binding.
+            //     var aContexts = oList.getSelectedContexts(true);
     
-                // update UI
-                var bSelected = (aContexts && aContexts.length > 0);
-                var sText = (bSelected) ? aContexts.length + " selected" : null;
-                oInfoToolbar.setVisible(bSelected);
-                oLabel.setText(sText);
-            },
+            //     // update UI
+            //     var bSelected = (aContexts && aContexts.length > 0);
+            //     var sText = (bSelected) ? aContexts.length + " selected" : null;
+            //     oInfoToolbar.setVisible(bSelected);
+            //     oLabel.setText(sText);
+            // },
 
             calcPrice: function(oEvent){
                var value = 
@@ -81,18 +81,19 @@ sap.ui.define([
 
            
 
-           onSelectionChange: function(oEvent){
-           console.log( oEvent.mParameters.selectedItem.mProperties.text);
-                console.log(oEvent);
-                var list,
-                binding,
-                filter;
-                list = this.getView().byId("idList");
-                filter = new sap.ui.model.Filter("{Category/Name}", sap.ui.model.FilterOperator.Contains , oEvent.mParameters.selectedItem.mProperties.text);
-                binding = list.getBinding("items");
-                binding.filter(filter,"Application");
+            onCategorySelectionChange: function(oEvent) {
+                console.log(oEvent.mParameters.selectedItem.mProperties.text);
+                var list = this.getView().byId("idList");
+                var sCategoryName = oEvent.mParameters.selectedItem.mProperties.text;
+            
+                // Filter definition
+                var filter = new sap.ui.model.Filter("Category/Name", FilterOperator.Contains, sCategoryName);
+            
+                var binding = list.getBinding("items");
+                binding.filter(filter, "Application");
                 binding.refresh(true);
-            } 
+            }
+            
             
             
         });
