@@ -3,16 +3,41 @@ sap.ui.define([
     'sap/m/MessageToast',
     "sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
+    "sap/ui/model/json/JSONModel",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageToast, Filter, FilterOperator) {
+    function (Controller, MessageToast, Filter, FilterOperator, JSONModel) {
         "use strict";
 
         return Controller.extend("gruppe3.controller.Main", {
             onInit: function () {
+            /*   var oModel.read("/V2/(S(oapt5dw0x0cksdamotodqh2m))/OData/OData.svc/", {
+                    success: function(oRetrievedResult) { alert("YES") },
+                    error: function(oError) {alert("NO")}
+                  }); */
 
+                  var oModel = this.getOwnerComponent().getModel();
+                  this.getView().setModel(oModel);
+              
+                  var sEntitySet = "/Products"; // これはあなたが$expandしたいエンティティセットの名前に基づいて変更する必要があります
+                  var sExpandParameters = "Category,Supplier"; // これは展開したい関連エンティティの名前に基づいて変更する必要があります
+              
+                  // モデルのreadメソッドを使用してデータを取得
+                  oModel.read(sEntitySet, {
+                      urlParameters: {
+                          "$expand": sExpandParameters
+                      },
+                      success: function(oData, response) {
+                          // ここで成功時の処理を行います。
+                          // 必要に応じてデータをビューモデルやJSONモデルにセットします。
+                      },
+                      error: function(oError) {
+                          // ここでエラー時の処理を行います。
+                          console.log(oError);
+                      }
+                  });
             },
     
             onSearch: function (oEvent) {
@@ -47,16 +72,27 @@ sap.ui.define([
                 oLabel.setText(sText);
             },
 
-            onSelectionChange: function(){
+            calcPrice: function(oEvent){
+               var value = 
+                alert(oEvent.mParameters.newValue);
+                this.getView().byId("_IDGenInput1").setValue();
+
+            },
+
+           
+
+           onSelectionChange: function(oEvent){
+           console.log( oEvent.mParameters.selectedItem.mProperties.text);
+                console.log(oEvent);
                 var list,
                 binding,
                 filter;
                 list = this.getView().byId("idList");
-                filter = new sap.ui.model.Filter("lastName",sap.ui.model.FilterOperator.Contains , "D");
+                filter = new sap.ui.model.Filter("{Category/Name}", sap.ui.model.FilterOperator.Contains , oEvent.mParameters.selectedItem.mProperties.text);
                 binding = list.getBinding("items");
                 binding.filter(filter,"Application");
                 binding.refresh(true);
-            }
+            } 
             
             
         });

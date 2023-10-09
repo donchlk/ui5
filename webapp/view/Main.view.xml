@@ -5,39 +5,39 @@ controllerName="gruppe3.controller.Main"
 xmlns:l="sap.ui.layout"
 xmlns:c="sap.ui.core"
 displayBlock="true">
-    <Page id="page" title="{i18n>Produkte}">
+    <Page id="page" title="{Produkte}">
 	
     		<subHeader width="50%">
-			<OverflowToolbar>
-				<SearchField liveChange=".onSearch" width="50%" />
+			<OverflowToolbar id="_IDGenOverflowToolbar1">
+				<SearchField id="_IDGenSearchField1" liveChange=".onSearch" width="50%" />
 			</OverflowToolbar>
 			
 			</subHeader>
 
 
-<HBox width="100%">
-<Label text="Filter: Kategorie" width="250px"/>
-			<ComboBox
+<HBox id="_IDGenHBox1" width="100%">
+<Label id="_IDGenLabel1" text="Filter: Kategorie" width="250px"/>
+			<ComboBox id="_IDGenComboBox1"
 				selectionChange ="onSelectionChange"
 				items="{
 					path: '/Categories',
 					sorter: { path: 'Name' }
 					
 				}">
-				<c:Item key="{Suppliers}" text="{Name}"  />
+				<c:Item id="_IDGenItem1" key="{Suppliers}" text="{Name}"  />
 			</ComboBox>
 
-		<Label text="Filter: Lieferant" width="250px"/>
-			<ComboBox
+		<Label id="_IDGenLabel2" text="Filter: Lieferant" width="250px"/>
+			<ComboBox id="_IDGenComboBox2"
 				items="{
 					path: '/Suppliers',
 					sorter: { path: 'Name' }
 				}">
-				<c:Item key="{Suppliers}" text="{Name}" />
+				<c:Item id="_IDGenItem2" key="{Suppliers}" text="{Name}" />
 			</ComboBox>
 
 
-<Button		width="170px"
+<Button id="_IDGenButton1"		width="170px"
             icon="sap-icon://cart"
              text="Warenkorb"
             press="onOpenDialog"
@@ -49,48 +49,57 @@ displayBlock="true">
 
 		<List
 			id="idList"
-			items="{/Products}"
+			items="{
+    path: '/Products',
+		sorter: {
+			path: 'Category/Name',
+			group: true
+		},
+		parameters: {
+			$expand:'Category,Supplier'
+		}
+    }"
 			selectionChange=".onSelectionChange"
 			mode="MultiSelect"
 			growing="true"
 			growingThreshold="50"
 			includeItemInSelection="true">
+			
 			<infoToolbar>
 				<OverflowToolbar visible="false" id="idInfoToolbar">
 					<Label id="idFilterLabel" />
 				</OverflowToolbar>
 			</infoToolbar>
-	 <CustomListItem>	
-	 <HBox >
+	 <CustomListItem id="_IDGenCustomListItem1">	
+	 <HBox id="_IDGenHBox2" >
 	 
-	 <VBox width="50%">
-	 <Image src="Produkt.PNG" width="{/imageWidth}" />
-            <Label text="{Name}"/>
-			<Label text="{Description}"/>
+	 <VBox id="_IDGenVBox1" width="50%">
+	 <Image id="_IDGenImage1" src="Produkt.PNG" width="{/imageWidth}" />
+            <Label id="_IDGenLabel3" text="{Name}"/>
+			<Label id="_IDGenLabel4" text="{Description}"/>
+			<Label id="_IDGenLabel5" text="{Supplier/Name}"/>
 
         </VBox>
 
-		<HBox width="50%">
-			<InputListItem label="Menge" width="50%">
-			<Input
-				placeholder="1"
-				value="1"
+		<HBox id="_IDGenHBox3" width="50%">
+			<InputListItem id="_IDGenInputListItem1" label="Menge" >
+			<Input id="_IDGenInput1"
+				value="17"
 				type="Number"
-				width="50px" />
-			 <Button text="Bestellen" click="onPressOrder" />
+				width="50px"
+				change ="calcPrice" />
+			 <Button id="_IDGenButton2" text="Direktbestellung" press="onPressOrder" />
 		</InputListItem>
 		</HBox>
-		<HBox >
-		<Label text="{Rating}"/>
+		<HBox id="_IDGenHBox4" >
+		<Label id="_IDGenLabel6" text="{Rating}"/>
 		</HBox>
 
-		<VBox >
-		<Label text="{Price} EUR"/>
-		<Button text="In Den Warenkorb" click="onPressInCart" />
+		<VBox id="_IDGenVBox2" >
+		<Label id="_IDGenLabel7" text="{Price} EUR"/>
+		<Button id="_IDGenButton3" text="Warenkorb" press="onPressInCart" />
 		</VBox>
 		
-		
-
 
 	 </HBox>
         
@@ -98,8 +107,6 @@ displayBlock="true">
 			
 				
 		</List>
-
-	
 
     </Page>
 </mvc:View>
