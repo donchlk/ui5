@@ -82,28 +82,39 @@ sap.ui.define([
            
 
             onCategorySelectionChange: function(oEvent) {
-                console.log(oEvent.mParameters.selectedItem.mProperties.text);
-                var list = this.getView().byId("idList");
-                var sCategoryName = oEvent.mParameters.selectedItem.mProperties.text;
-            
-                // Filter definition
-                var filter = new sap.ui.model.Filter("Category/Name", FilterOperator.Contains, sCategoryName);
-            
-                var binding = list.getBinding("items");
-                binding.filter(filter, "Application");
-                binding.refresh(true);
+                var oSelectedItem = oEvent.getParameter("selectedItem");
+                if(oSelectedItem) {
+                    var sCategoryName = oSelectedItem.getText();
+                    this._applyFilter(sCategoryName ? new Filter("Category/Name", FilterOperator.Contains, sCategoryName) : null);
+                } else {
+                    this._clearFilter();
+                }
             },
-
+            
             onSupplierSelectionChange: function(oEvent) {
-                var list = this.getView().byId("idList");
-                var sSupplierName = oEvent.getParameter("selectedItem").getText();
+                var oSelectedItem = oEvent.getParameter("selectedItem");
+                if(oSelectedItem) {
+                    var sSupplierName = oSelectedItem.getText();
+                    this._applyFilter(sSupplierName ? new Filter("Supplier/Name", FilterOperator.Contains, sSupplierName) : null);
+                } else {
+                    this._clearFilter();
+                }
+            },
             
-                // Filter definition
-                var filter = new sap.ui.model.Filter("Supplier/Name", FilterOperator.Contains, sSupplierName);
+            _applyFilter: function(oFilter) {
+                var oList = this.getView().byId("idList");
+                var oBinding = oList.getBinding("items");
+                if(oFilter) {
+                    oBinding.filter([oFilter]);
+                } else {
+                    this._clearFilter();
+                }
+            },
             
-                var binding = list.getBinding("items");
-                binding.filter(filter, "Application");
-                binding.refresh(true);
+            _clearFilter: function() {
+                var oList = this.getView().byId("idList");
+                var oBinding = oList.getBinding("items");
+                oBinding.filter([]);
             },
 
             openSortDialog: function() {

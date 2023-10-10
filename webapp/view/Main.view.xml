@@ -18,18 +18,19 @@ displayBlock="true">
 <HBox id="_IDGenHBox1" width="100%">
 <Button id="_IDGenButton4" text="Sort" press="openSortDialog" />
 <Label id="_IDGenLabel1" text="Filter: Kategorie" width="250px"/>
-	<ComboBox id="_IDGenComboBox3"
-		selectionChange="onCategorySelectionChange"
-		items="{ path: '/Categories', sorter: { path: 'Name' } }">
-		<c:Item id="_IDGenItem3" key="{Suppliers}" text="{Name}"  />
-	</ComboBox>
+<ComboBox id="_IDGenComboBox3"
+	selectionChange="onCategorySelectionChange"
+	items="{ path: '/Categories', sorter: { path: 'Name' } }">
+	<c:Item id="_IDGenItemEmptyCategory" key="" text="" />
+	<c:Item id="_IDGenItem3" key="{Suppliers}" text="{Name}"  />
+</ComboBox>
 
-		<Label id="_IDGenLabel2" text="Filter: Lieferant" width="250px"/>
-	<ComboBox id="_IDGenComboBox4"
-		selectionChange="onSupplierSelectionChange"
-		items="{ path: '/Suppliers', sorter: { path: 'Name' } }">
-		<c:Item id="_IDGenItem4" key="{Suppliers}" text="{Name}" />
-	</ComboBox>
+<ComboBox id="_IDGenComboBox4"
+	selectionChange="onSupplierSelectionChange"
+	items="{ path: '/Suppliers', sorter: { path: 'Name' } }">
+	<c:Item id="_IDGenItemEmptySupplier" key="" text="" />
+	<c:Item id="_IDGenItem4" key="{Suppliers}" text="{Name}" />
+</ComboBox>
 
 
 <Button id="_IDGenButton1"		width="170px"
