@@ -173,6 +173,17 @@ sap.ui.define([
                 this._oDetailDialog.close();
                 this._oDetailDialog.destroy();
                 this._oDetailDialog = null;
+            },
+
+            onSupplierProductPress: function(oEvent) {
+                // クリックされたリストアイテムのバインディングコンテキストを取得
+                var oListItem = oEvent.getSource();
+                var oBindingContext = oListItem.getBindingContext();
+            
+                // 詳細ダイアログにバインディングコンテキストを再設定
+                this._oDetailDialog.setBindingContext(oBindingContext);
+            
+                // 詳細ダイアログの内容が自動的に更新されます
             }
             
             

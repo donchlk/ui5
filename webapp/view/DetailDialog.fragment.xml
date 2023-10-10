@@ -22,7 +22,12 @@
             <Label id="_IDGenLabel4" text="Category:  {Category/Name}" />
             <Label id="_IDGenLabel5" text="Supplier:  {Supplier/Name}" />
             <List id="supplierProductsList" items="{Supplier/Products}">
-            <StandardListItem id="_IDGenStandardListItem1" title="{Name}" description="{Description}" />
+                <StandardListItem 
+                    id="_IDGenStandardListItem1" 
+                    title="{Name}" 
+                    description="{Description}" 
+                    type="Active" 
+                    press="onSupplierProductPress" />
             </List>
             <!-- その他の情報 -->
         </VBox>
